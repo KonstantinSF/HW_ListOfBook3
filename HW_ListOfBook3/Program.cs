@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using static System.Console;
 
 namespace HW_ListOfBook3
@@ -24,7 +29,7 @@ namespace HW_ListOfBook3
         {
             Book[] BookArr;
             string Name { get; set; }
-            public int SIZE { get; set; }
+            //public int SIZE { get; set; }
             public BookList(int SIZE, string name)
             {
                 BookArr = new Book[SIZE];
@@ -122,6 +127,15 @@ namespace HW_ListOfBook3
                 }
                 BookArr.ResizeBook(ref BookArr, BookArr.Length - 1);
             }
+            public override string ToString()
+            {
+                string str = null; 
+                for (int i =0; i<this.Length; i++)
+                {
+                     str += this[i].ToString()+"\n";
+                }
+                return str;
+            }
             public static void Main(string[] args)
             {
                 BookList booklist = new BookList(4, "My List");
@@ -133,11 +147,11 @@ namespace HW_ListOfBook3
 
                 Book bookB = new Book(4, "Iron Mask", "Artyur Berned");
                 booklist.AddNewBook(ref booklist, bookB);
-                //WriteLine(booklist[4]);
-                //booklist.DeleteBook(ref booklist, "451 by Farenheit");
-                //WriteLine(booklist[3]);
+                WriteLine($"List after add N4 book:\n {booklist}");
+                booklist.DeleteBook(ref booklist, "451 by Farenheit");
+                WriteLine($"List after delete N2 book:\n {booklist}");
                 booklist.IsInBookList("Kolob");
-                WriteLine(booklist["Kolob"]);
+                WriteLine(booklist["Notre-Dame de Paris"]);
             }
         }
     }
